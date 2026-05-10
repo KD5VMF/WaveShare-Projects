@@ -1,5 +1,0 @@
-LCD_LIB_DIR=/home/sysop/CM4-NAS-Double-Deck_Demo/RaspberryPi
-LCD_ROTATE=180
-UPDATE_LOG=/var/log/cm4-safe-nightly-update.log
-UPDATE_STATUS=/run/cm4-safe-update.status
-TARGET_FPS=2
