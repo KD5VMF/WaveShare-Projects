@@ -1,0 +1,5 @@
+AGWatch REV16 Auto DNS Save
+Executable: AGWatch_REV16_AutoDnsSave.exe
+Added: Fixed Rows label wrapping, live auto-save while editing DNS1/DNS2 URLs, and automatic card/source-name updates when an IP or port changes.
+Kept: Use DNS1 and Use DNS2 checkboxes so either server can be disabled for testing, while preventing both from being turned off at the same time.
+Based on: REV14 DualDNS PortFix.
