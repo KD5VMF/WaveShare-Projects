@@ -1,0 +1,20 @@
+[Unit]
+Description=CM4 LCD Suite - ai-bricks-lcd
+After=network-online.target
+Wants=network-online.target
+Conflicts=pfsense-lcd  wifi-radar-lcd tpot-lcd adguard-lcd packet-storm-lcd tpot-map-lcd cyber-threat-lcd ai-chess-lcd cm4-ai-bricks.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/ai-bricks-lcd
+ExecStartPre=-/bin/systemctl stop pfsense-lcd  wifi-radar-lcd tpot-lcd adguard-lcd packet-storm-lcd tpot-map-lcd cyber-threat-lcd ai-chess-lcd cm4-ai-bricks.service
+ExecStart=/usr/bin/python3 -u /opt/ai-bricks-lcd/ai_bricks_lcd.py
+WorkingDirectory=/opt/ai-bricks-lcd
+Restart=always
+RestartSec=3
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

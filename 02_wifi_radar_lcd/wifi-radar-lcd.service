@@ -1,0 +1,20 @@
+[Unit]
+Description=CM4 LCD Suite - wifi-radar-lcd
+After=network-online.target
+Wants=network-online.target
+Conflicts=pfsense-lcd ai-bricks-lcd  tpot-lcd adguard-lcd packet-storm-lcd tpot-map-lcd cyber-threat-lcd ai-chess-lcd cm4-ai-bricks.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/wifi-radar-lcd
+ExecStartPre=-/bin/systemctl stop pfsense-lcd ai-bricks-lcd  tpot-lcd adguard-lcd packet-storm-lcd tpot-map-lcd cyber-threat-lcd ai-chess-lcd cm4-ai-bricks.service
+ExecStart=/usr/bin/python3 -u /opt/wifi-radar-lcd/wifi_radar_lcd.py
+WorkingDirectory=/opt/wifi-radar-lcd
+Restart=always
+RestartSec=3
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+[Unit]
+Description=CM4 LCD Suite - adguard-lcd
+After=network-online.target
+Wants=network-online.target
+Conflicts=pfsense-lcd ai-bricks-lcd wifi-radar-lcd tpot-lcd  packet-storm-lcd tpot-map-lcd cyber-threat-lcd ai-chess-lcd cm4-ai-bricks.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/adguard-lcd
+ExecStartPre=-/bin/systemctl stop pfsense-lcd ai-bricks-lcd wifi-radar-lcd tpot-lcd  packet-storm-lcd tpot-map-lcd cyber-threat-lcd ai-chess-lcd cm4-ai-bricks.service
+ExecStart=/usr/bin/python3 -u /opt/adguard-lcd/adguard_lcd.py
+WorkingDirectory=/opt/adguard-lcd
+Restart=always
+RestartSec=3
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

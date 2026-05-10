@@ -1,0 +1,20 @@
+[Unit]
+Description=CM4 LCD Suite - cyber-threat-lcd
+After=network-online.target
+Wants=network-online.target
+Conflicts=pfsense-lcd ai-bricks-lcd wifi-radar-lcd tpot-lcd adguard-lcd packet-storm-lcd tpot-map-lcd  ai-chess-lcd cm4-ai-bricks.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/cyber-threat-lcd
+ExecStartPre=-/bin/systemctl stop pfsense-lcd ai-bricks-lcd wifi-radar-lcd tpot-lcd adguard-lcd packet-storm-lcd tpot-map-lcd  ai-chess-lcd cm4-ai-bricks.service
+ExecStart=/usr/bin/python3 -u /opt/cyber-threat-lcd/cyber_threat_lcd.py
+WorkingDirectory=/opt/cyber-threat-lcd
+Restart=always
+RestartSec=3
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
