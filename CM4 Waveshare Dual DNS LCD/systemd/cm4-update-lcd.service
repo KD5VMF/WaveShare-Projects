@@ -1,0 +1,33 @@
+[Unit]
+Description=CM4 Update Progress LCD Display
+After=network-online.target
+Wants=network-online.target
+Conflicts=dual-dns-lcd.service dual-pendulum-lcd.service helix-solar-lcd.service biogenesis-life-lcd.service ai-chess-lcd.service pfsense-lcd.service ai-bricks-lcd.service wifi-radar-lcd.service tpot-lcd.service adguard-lcd.service packet-storm-lcd.service tpot-map-lcd.service cyber-threat-lcd.service cm4-ai-bricks.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/cm4-update-lcd
+ExecStartPre=-/bin/systemctl stop dual-dns-lcd.service
+ExecStartPre=-/bin/systemctl stop dual-pendulum-lcd.service
+ExecStartPre=-/bin/systemctl stop helix-solar-lcd.service
+ExecStartPre=-/bin/systemctl stop biogenesis-life-lcd.service
+ExecStartPre=-/bin/systemctl stop ai-chess-lcd.service
+ExecStartPre=-/bin/systemctl stop pfsense-lcd.service
+ExecStartPre=-/bin/systemctl stop ai-bricks-lcd.service
+ExecStartPre=-/bin/systemctl stop wifi-radar-lcd.service
+ExecStartPre=-/bin/systemctl stop tpot-lcd.service
+ExecStartPre=-/bin/systemctl stop adguard-lcd.service
+ExecStartPre=-/bin/systemctl stop packet-storm-lcd.service
+ExecStartPre=-/bin/systemctl stop tpot-map-lcd.service
+ExecStartPre=-/bin/systemctl stop cyber-threat-lcd.service
+ExecStartPre=-/bin/systemctl stop cm4-ai-bricks.service
+ExecStart=/usr/bin/python3 -u /opt/cm4-update-lcd/update_lcd.py
+WorkingDirectory=/opt/cm4-update-lcd
+Restart=always
+RestartSec=2
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+LCD_LIB_DIR=/home/sysop/CM4-NAS-Double-Deck_Demo/RaspberryPi
+LCD_ROTATE=180
+
+DNS1_HOST=192.168.1.207
+DNS2_HOST=192.168.1.206
+DNS1_NAME=DNS1
+DNS2_NAME=DNS2
+
+DNS_TEST_NAME=google.com
+SCAN_INTERVAL=5
+TARGET_FPS=4
+
+# Optional AdGuard Home web login. Leave CHANGE_ME to disable API stats.
+ADGUARD_USER=admin
+ADGUARD_PASSWORD=CHANGE_ME
